@@ -4,14 +4,14 @@ spring:
   datasource:
     url: jdbc:postgresql://${POSTGRE_SERVER:localhost}:${POSTGRE_PORT:5432}/${POSTGRE_DB:demo-postgres}
     username: ${POSTGRE_USER:postgre}
-    password: ${POSTGRE_PASSWPRD:root}
+    password: ${POSTGRE_PASSWORD:root}
     validationQuery: SELECT 1
     testOnBorrow: true
   data:
     mongodb:
       auto-index-creation: true
-      authentication-database: admin
-      uri: mongodb://${MONGO_URL:127.0.0.1}:${MONGO_PORT:27017}/${MONGO_DATA:mongo-test}?authSource=admin
+      authentication-database: ${MONGO_USER_AUTH:admin}
+      uri: mongodb://${MONGO_URL:127.0.0.1}:${MONGO_PORT:27017}/${MONGO_DATA:mongo-test}?authSource=${MONGO_USER_AUTH:admin}
       database: ${MONGO_DATA:mongo-test}
       tenant-prefix: ${MONGO_DATA:mongo-test}
   jpa:
