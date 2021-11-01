@@ -32,3 +32,5 @@ services:
       MONGO_PORT: 27017
       MONGO_DATA: mongo_local
       MONGO_USER_AUTH: admin
+    ports:
+      - 20001:20001
