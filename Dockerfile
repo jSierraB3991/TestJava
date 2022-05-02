@@ -1,7 +1,11 @@
-FROM openjdk:11.0.13-oraclelinux8
+FROM maven:3-openjdk-11 AS builder
 
 WORKDIR /app
-ARG JARFILE=target/*.jar
-COPY ${JARFILE} demo-app.jar
+COPY . .
+RUN mvn install
 
-CMD ["java", "-jar", "demo-app.jar"]
+
+FROM openjdk:11.0-jre
+COPY --from=builder /app/target/**.jar app.jar
+CMD ["java", "-jar", "./app.jar"]
+
